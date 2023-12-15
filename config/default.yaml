@@ -1,0 +1,13 @@
+host: "0.0.0.0"
+port: 5000
+
+pg:
+    max_size: 3
+    min_size: 1
+    idle_timeout: 12000
+    connect_str: postgresql://postgres@localhost:5432/vt?sslmode=Disable
+redis:
+    max_size: 3
+    min_size: 1
+    idle_timeout: 12000
+    connect_str: redis://redis:@localhost:54322/0
