@@ -14,14 +14,14 @@ mod server;
 mod service;
 mod wire;
 
-use ezw_core::core as express;
+use ezw_core::core as ezw;
 
 use crate::{service::WebServices, wire::wire_app};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     // 配置读取加载
-    let conf = express::load_config::<config::BootConfig>(express::config::ConfigType::YAML(
+    let conf = ezw::load_config::<config::BootConfig>(ezw::config::ConfigType::YAML(
         "./config/default.yaml".to_string(),
     ))
     .await?;
@@ -30,7 +30,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // 创建服务器实例
     let servers = server::new_servers(conf.clone()).await?;
     // 创建应用
-    let app = express::new_app(conf.clone(), datas, servers, conf.id, conf.name, conf.version);
+    let app = ezw::new_app(conf.clone(), datas, servers, conf.id, conf.name, conf.version);
 
     // 创建 axum http 服务实例
     let app = app

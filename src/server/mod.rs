@@ -3,7 +3,7 @@ use ezw_core::core::server::{axum::AxumServer, Server};
 
 use crate::{
     config::BootConfig,
-    express::server::{ServerAddress, Servers as ExpressServers},
+    ezw::server::{ServerAddress, Servers as ExpressServers},
 };
 
 // 服务实例
