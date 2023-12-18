@@ -13,6 +13,7 @@ mod routers;
 mod server;
 mod service;
 mod wire;
+mod errors;
 
 use ezw_core::core as ezw;
 
@@ -30,7 +31,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
     // 创建服务器实例
     let servers = server::new_servers(conf.clone()).await?;
     // 创建应用
-    let app = ezw::new_app(conf.clone(), datas, servers, conf.id, conf.name, conf.version);
+    let app = ezw::new_app(
+        conf.clone(),
+        datas,
+        servers,
+        conf.id,
+        conf.name,
+        conf.version,
+    );
 
     // 创建 axum http 服务实例
     let app = app
